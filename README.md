@@ -10,6 +10,7 @@ In order to use the application:
 1.	Clone or copy this project on raspberry pi side. Paste it in /home/pi/Desktop/   
 2.	Go to the following folder: SpeechRasberrySmartHouse (should be on your desktop)
 3.	Modify the following files:
+
 •	 [Commands.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/commands.txt)  assign your devices to the respective output, devices after the double comma can be controlled by voice e.g. “kitchen_light,, kitchen_lamp@@0” after double @@ is the output, the    
       file is bind with gpio_input_output.txt, etc if we combine our examples, the kitchen light will assign to output 15/gpio15, 0->15 if it was after @@ the value 1 would go compare the 2 examples to 16.
 
@@ -17,7 +18,7 @@ In order to use the application:
 
 •	[gpio_input_output.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/gpio_input_output.txt)   (assign pins to input and output e.g. "INPUT:0,1,2,3" means gpio 0-3 are assigned to input, respectively "Output:15,16,17" means gpio 15-17 are assigned to output, additionally you can assign pca9685 to external output by typing "External true")
 
-•	  exclusiveOutputs.txt (type 
+• [exclusiveOutputs.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/exclusiveOutputs.txt)(type 
 "
    exclusiveOutputs:1, 2, 3
    exclusiveOutputs:5, 6
