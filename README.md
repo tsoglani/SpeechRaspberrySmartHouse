@@ -11,8 +11,8 @@ In order to use the application:
 2.	Go to the following folder: SpeechRasberrySmartHouse (should be on your desktop)
 3.	Modify the following files:
 
-•	 [Commands.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/commands.txt)  assign your devices to the respective output, devices after the double comma can be controlled by voice e.g. “kitchen_light,, kitchen_lamp@@0” after double @@ is the output, the    
-      file is bind with gpio_input_output.txt, etc if we combine our examples, the kitchen light will assign to output 15/gpio15, 0->15 if it was after @@ the value 1 would go compare the 2 examples to 16.
+•	 [Commands.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/commands.txt)  assign your devices to the respective output. Devices after the double comma can be controlled by voice e.g. “kitchen_light,, kitchen_lamp@@0” after double @@ is the output, the    
+      file is bound to gpio_input_output.txt, etc if we combine our examples, the kitchen light will assign to output 15/gpio15, 0->15 if it was after @@ the value 1 would go compare the 2 examples to 16.
 
 •	[DeviceName.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/deviceName.txt)  (assign the user/s allowed to interact with the application)
 
@@ -41,9 +41,9 @@ In order to use the application:
 
 Useful files
 
--[Disabling_the_blank_screen.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Disabling_the_blank_screen.txt) how to make screen to be always on.
--[RunOnStartup](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md) how to make application to run automatically when raspberry opens.
--[import audio](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/import_audio.md) if you want to enable speech commands mode (raspberry answer and respond to your command).
+-[Disabling_the_blank_screen.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Disabling_the_blank_screen.txt) set screen to be always on
+-[RunOnStartup](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md) run application on startup
+-[import audio](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/import_audio.md) enable voice commands
 
 
 ENJOY AND THANK YOU FOR DOWNLOADING!
