@@ -8,8 +8,6 @@ As soon as you do that you will be able to apply the "write and read" permission
 Create script:</br>
 My example for /etc/rc.local file:  </br>
 " 
- # By default this script does nothing.</br>
- # need to enter sudo command</br>
 
 sudo java -jar /home/pi/Desktop/SmartHouseServer/SmartHouseServer.jar</br>
 
