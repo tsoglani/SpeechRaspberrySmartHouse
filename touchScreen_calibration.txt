@@ -1,0 +1,20 @@
+
+Install xinput_calibrator.
+Install some dependencies:
+sudo apt-get install libx11-dev libxext-dev libxi-dev x11proto-input-dev
+ sudo apt-get install xinput-calibrator
+
+Download xinput_calibrator somewhere in the Raspberry PI's folder structure.
+wget http://github.com/downloads/tias/xinput ... 7.5.tar.gz
+Unpack it and then navigate to the unpacked folder and then install it using:
+./configure
+make
+sudo make install
+After this step you should run xinput_calibrator(from Xserver terminal console: first startx then open console and then run it).
+xinput_calibrator
+
+
+to save it permanently paste the results on "/etc/X11/xorg.conf.d/99-calibration.conf"
+
+or if this doesnt war try save it on "sudo nano /usr/share/X11/xorg.conf.d/10-evdev.conf
+"
