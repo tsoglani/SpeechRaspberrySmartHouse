@@ -36,6 +36,13 @@ In order to use the application:
   
   You can create a .jar file from within Raspberry with BlueJ by using the application inside the SpeechRasberrySmartHouse/Rasberry_2b-3/ folder, named Rasberry_2a,b_InAndOut_40gpio_pin. You can also use NetBeans or IntelliJ IDEA to create the .jar file by following this link: SpeechRaspberrySmartHouse_IDEA_VERSION
 
-if you want to use pca9685, download and run on raspberry side the [pi4j-1.2-SNAPSHOT.deb](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/pi4j-1.2-SNAPSHOT.deb) file to istall the new libraries (old one might have some confligs with pca9685).
+-if you want to use pca9685, download and run on raspberry side the [pi4j-1.2-SNAPSHOT.deb](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/pi4j-1.2-SNAPSHOT.deb) file to istall the new libraries (old one might have some confligs with pca9685).
+
+Usefull files
+
+-[Disabling_the_blank_screen.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Disabling_the_blank_screen.txt) how to make screen to be always on.
+-[RunOnStartup](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md) how to make application to run automatically when raspberry opens.
+-[import audio](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/import_audio.md) if you want to enable speech commands mode (raspberry answer and respond to your command).
+
 
 ENJOY AND THANK YOU FOR DOWNLOADING!
