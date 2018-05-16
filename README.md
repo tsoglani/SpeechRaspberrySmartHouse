@@ -1,6 +1,6 @@
 INFORMATION
 
-This is a smart house application. It allows the user to remotely interact with everything that uses electricity within the house. This includes lights, electric blinds, boilers, AC units and many more. The application supports multiple input methods. The Android application(link), network PCs and terminals within the house.
+This is a smart house application. It allows the user to remotely interact with everything that uses electricity within the house. This includes lights, electric blinds, boilers, AC units and many more. The application supports multiple input methods. The Android application(link), network [PCs](https://github.com/tsoglani/Java_SmartHouseClient)  and terminals within the house.
 
 INSTRUCTIONS
 
