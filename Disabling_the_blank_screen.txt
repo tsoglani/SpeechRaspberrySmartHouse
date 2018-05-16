@@ -1,0 +1,6 @@
+sudo nano /etc/lightdm/lightdm.conf
+and add in the [SeatDefaults] section the following command:
+"
+[SeatDefaults]
+xserver-command=X -s 0 -dpms
+"
