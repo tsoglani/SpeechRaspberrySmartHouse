@@ -29,6 +29,6 @@ and add at the end </br>
 @lxterminal -e "/home/pi/Desktop/SmartHouseServer.sh"</br>
 
 enter sudo nano /home/pi/Desktop/SmartHouseServer.sh
-then coppy-paste [SmartHouseServer.sh ](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/SmartHouseServer.sh)
+then coppy-paste [SmartHouseServer.sh ](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Raspberry_2B-3/SmartHouseServer.sh)
 sudo chmod 777 /home/pi/Desktop/SmartHouseServer.sh
 
