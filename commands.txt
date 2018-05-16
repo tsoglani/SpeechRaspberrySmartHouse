@@ -1,0 +1,15 @@
+Kitchen light,,kitchen lights@@0
+Living room light 1,,living room lights 1@@1
+Living room light 2,,living room lights 2@@2
+Living room light 3,,living room lights 3@@3
+Hall 1@@4
+Room light 1,,room lights 1,,bedroom light 1,,bedroom lights 1@@5
+Room light 2,,room lights 2,,bedroom light 2,,bedroom lights 2@@6
+Door@@7
+Hidden light 1,,Hidden lights 1,,Hidden light one,,Hidden lights one@@8
+Hidden light 2,,Hidden lights 2,,Hidden light two,,Hidden lights two@@9
+Hidden light 3,,Hidden lights 3,,Hidden light three,,Hidden lights three@@10
+Balcony 1 light 1,,balcony 1 lights 1,,balcony one light one,,balcony one lights one@@11
+Balcony 1 light 2,,balcony 1 lights 2,,balcony one light two,,balcony one lights two@@12
+Balcony 2 light,,balcony 2 lights,,balcony two light,,balcony two lights@@13
+Electric shutters bedroom on@@14

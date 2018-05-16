@@ -1,0 +1,4 @@
+#!/bin/bash
+pico2wave -w=tmp/temp.wav "$1"
+aplay tmp/temp.wav
+rm tmp/temp.wav

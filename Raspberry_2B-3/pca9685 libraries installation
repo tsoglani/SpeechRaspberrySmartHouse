@@ -1,0 +1,22 @@
+from https://cdn-learn.adafruit.com/downloads/pdf/adafruit-16-channel-servo-driver-with-raspberry-pi.pdf
+
+command line
+sudo apt-get install python-smbus
+sudo apt-get install i2c-tools
+
+
+
+-sudo nano /etc/modprobe.d/raspi-blacklist.conf
+and change from 
+"blacklist i2c-bcm2708"
+to
+"# blacklist i2c-bcm2708"
+ (if its not there). 
+
+-sudo nano /etc/modules 
+
+i2c-dev 
+i2c-bcm2708
+
+
+and then reboot.
