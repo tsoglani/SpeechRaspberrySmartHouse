@@ -53,7 +53,7 @@ i2c-bcm2708  </br>
 important your /home/pi/Desktop/SpeechRaspberrySmartHouse.jar must be able to Execute (right click on file -> Permissions -> Execute -> Anyone) </br>
  </br>
 more to do </br>
--[Disabling_the_blank_screen](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Disabling_the_blank_screen) </br>
+-[Disabling_the_blank_screen](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Disabling_the_blank_screen.txt) </br>
 -[import_audio-microphone_functionality](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/import_audio.md) </br>
 -[static ip](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/static_ip.md) </br>
 -[Run application on startup](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md) </br>
