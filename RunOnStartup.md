@@ -25,7 +25,7 @@ from /etc/rc.local</br>
 **2nd way </br>
 on command line enter</br>
 nano ~/.config/lxsession/LXDE-pi/autostart</br>
-and add at the end </br>
+and enter at the end of showing list</br>
 @lxterminal -e /home/pi/Desktop/SmartHouseServer.sh</br>
 
 enter sudo nano /home/pi/Desktop/SmartHouseServer.sh
