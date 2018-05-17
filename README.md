@@ -45,5 +45,7 @@ Useful files
 -[RunOnStartup](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md) run application on startup
 -[import audio](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/import_audio.md) enable voice commands
 
+-[Raspberry 3 Gpio Headers](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/j8header-3b.png)
+
 
 ENJOY AND THANK YOU FOR DOWNLOADING!
