@@ -42,10 +42,13 @@ In order to use the application:
 Useful files
 
 -[Disabling_the_blank_screen.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Disabling_the_blank_screen.txt) set screen to be always on
+
 -[RunOnStartup](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md) run application on startup
+
 -[import audio](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/import_audio.md) enable voice commands
 
 -[Raspberry 3 Gpio Headers](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/j8header-3b.png)
 
+-[pca9685 Raspberry Connection](https://raw.githubusercontent.com/tsoglani/SpeechRaspberrySmartHouse/master/Raspberry_2B-3/wiring.png)
 
 ENJOY AND THANK YOU FOR DOWNLOADING!
