@@ -26,7 +26,7 @@ from /etc/rc.local</br>
 on command line enter</br>
 nano ~/.config/lxsession/LXDE-pi/autostart</br>
 and add at the end </br>
-@lxterminal -e "/home/pi/Desktop/SmartHouseServer.sh"</br>
+@lxterminal -e /home/pi/Desktop/SmartHouseServer.sh</br>
 
 enter sudo nano /home/pi/Desktop/SmartHouseServer.sh
 then coppy-paste [SmartHouseServer.sh ](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Raspberry_2B-3/SmartHouseServer.sh)
