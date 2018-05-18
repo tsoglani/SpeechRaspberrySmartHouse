@@ -42,10 +42,14 @@ email_to: the email address you want to send it you can use this command multipl
 
   You can set the application to run on startup by following these instructions  [link](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md)
 
-  In order to run the application you must create a .jar file named "SmartHouseServer.jar" and put it inside the folder named "SmartHouseServer" then place the folder on the desktop of Rasberry pi.
+  In order to run the application you must create a .jar file named "SmartHouseServer.jar" and put it inside the folder named "SmartHouseServer" then place the folder on the desktop of Rasberry pi/
   
-  You can create a .jar file from within Raspberry with BlueJ by using the application inside the SpeechRasberrySmartHouse/Rasberry_2b-3/ folder, named Rasberry_2a,b_InAndOut_40gpio_pin. You can also use NetBeans or IntelliJ IDEA to create the .jar file by following this link: [SpeechRaspberrySmartHouse_IDEA_VERSION](https://github.com/tsoglani/SpeechRaspberrySmartHouseClient_IDEA_VERSION)
-
+ -Create A Jar File Option One:
+ You can create a .jar file from within Raspberry with BlueJ by using the application inside the SpeechRasberrySmartHouse/Rasberry_2b-3/ folder, named Rasberry_2a,b_InAndOut_40gpio_pin. You can also use NetBeans or IntelliJ IDEA to create the .jar file by following this link: [SpeechRaspberrySmartHouse_IDEA_VERSION](https://github.com/tsoglani/SpeechRaspberrySmartHouseClient_IDEA_VERSION)
+  -Create A Jar File Option Two (Not Tested)
+ Copy/Clone the [SmartHouseServer](https://github.com/tsoglani/SpeechRaspberrySmartHouse/tree/master/SmartHouseServer) folder with it's contents on Raspberry's Desktop.
+    
+    
 -if you want to use pca9685, download and run on raspberry side the [pi4j-1.2-SNAPSHOT.deb](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/pi4j-1.2-SNAPSHOT.deb) file to istall the new libraries (old one might have some confligs with pca9685).
 
 Useful files
