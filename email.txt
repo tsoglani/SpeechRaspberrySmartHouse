@@ -1,4 +1,8 @@
 enable_send_mail_on_boot:true
-email_from:youdEmail@gmail.com
+email_from:youdEmail@email.com
 email_password:yourPassword
-email_to:drtsoglanakos@gmail.com
+email_to:sending@emailOne.com
+email_to:sending@emailTwoIfYouWant.com
+
+
+//be carefull about the syntax and vacuum characters
