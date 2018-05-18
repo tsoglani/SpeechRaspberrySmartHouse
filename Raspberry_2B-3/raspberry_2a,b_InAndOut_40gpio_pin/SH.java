@@ -12,7 +12,13 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CFactory;
-
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.URL;
+import java.util.Properties;
 import java.io.*;
 import java.math.BigDecimal;
 import java.net.*;
@@ -91,6 +97,132 @@ public class SH {
         }
     }
 
+    
+    private void sendEmailOnBoot(String fileName){
+    String line=null,output=null;
+        BufferedReader br;
+         boolean enable_send_mail_on_boot=false;
+         String email_from=null,email_password=null;
+         ArrayList <String>emails_to=new ArrayList <String>();
+        try {
+            InputStream fis = new FileInputStream(fileName);
+            InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
+            br = new BufferedReader(isr);
+           while ((line = br.readLine()) != null) {
+                // Deal with the line
+
+                if (line.startsWith("enable_send_mail_on_boot:")){
+                    output=line.substring("enable_send_mail_on_boot:".length(),line.length());
+                   enable_send_mail_on_boot=Boolean.parseBoolean(output.replaceAll(" ",""));
+             System.out.println("enable_send_mail_on_boot"+enable_send_mail_on_boot);
+                }else if (line.startsWith("email_from:")){
+                    output=line.substring("email_from:".length(),line.length());
+                   email_from=output;
+             System.out.println("email_from"+email_from);
+                }else if (line.startsWith("email_to:")){
+                    output=line.substring("email_to:".length(),line.length());
+                   emails_to.add(output);
+             System.out.println("email_to"+output);
+                }
+else if (line.startsWith("email_password:")){
+                    output=line.substring("email_password:".length(),line.length());
+                   email_password=output;
+             System.out.println("email_password"+email_password);
+                }
+                }
+if(!enable_send_mail_on_boot||email_from==null|| emails_to.isEmpty()|| email_password==null){
+return;
+}
+final String emailFrom=email_from,emailPassword=email_password;
+final ArrayList<String> emailsTo=emails_to;
+new Thread(){
+            @Override
+            public void run() {
+                String externalIP=getIP();
+                while(externalIP==null){
+                    try {
+                        sleep(30000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    externalIP=getIP();
+
+                }
+                try {
+                    for(String emailTo:emailsTo){
+                new EmailJava(emailFrom,emailTo,emailPassword,externalIP,deviceName);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+    
+
+//                System.out.println();
+            
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+    }
+    
+    
+    
+  
+
+private String getIP() {
+
+        String systemipaddress = "";
+        try {
+            URL url_name = new URL("http://bot.whatismyipaddress.com");
+            BufferedReader sc = new BufferedReader(new InputStreamReader(url_name.openStream()));
+            systemipaddress = sc.readLine().trim();
+            if (!(systemipaddress.length() > 0)) {
+                try {
+                    InetAddress localhost = InetAddress.getLocalHost();
+                    System.out.println((localhost.getHostAddress()).trim());
+                    systemipaddress = (localhost.getHostAddress()).trim();
+                } catch (Exception e1) {
+                    systemipaddress = "Cannot Execute Properly";
+                }
+            }
+        } catch (Exception e2) {
+            e2.printStackTrace();
+            systemipaddress= getIP2();
+
+        }
+        return systemipaddress;
+
+    }
+
+
+    private  String getIP2() { URL ipAdress;
+        String ip=null;
+        try {
+            ipAdress = new URL("http://myexternalip.com/raw");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(ipAdress.openStream()));
+
+             ip = in.readLine();
+            System.out.println();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+return ip;
+
+    }
+
+    
+    
+    
+    
+    
     public static String readUserName(String fileName){
 
 
@@ -447,7 +579,9 @@ public class SH {
         declareInputsAndOutputs("/home/pi/Desktop/SpeechRaspberrySmartHouse/gpio_input_output.txt");
         readPort("/home/pi/Desktop/SpeechRaspberrySmartHouse/port.txt");
         readExclusiveOutputs("/home/pi/Desktop/SpeechRaspberrySmartHouse/exclusiveOutputs.txt");
-if(hasExterlanGPIO) {
+
+        
+        if(hasExterlanGPIO) {
 
     BigDecimal frequency = new BigDecimal("48.828");
     // Correction factor: actualFreq / targetFreq
@@ -487,6 +621,7 @@ if(hasExterlanGPIO) {
         initInputListeners2(); // remove comment if you have input plug in
         db = new DB(this);
         new SheduleThread().start();
+        sendEmailOnBoot("/home/pi/Desktop/SpeechRaspberrySmartHouse/email.txt");
     }
 
     private void initArrays() {
