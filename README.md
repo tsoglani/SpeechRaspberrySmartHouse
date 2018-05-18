@@ -55,6 +55,9 @@ email_to: the email address you want to send it you can use this command multipl
     
 -if you want to use pca9685, download and run on raspberry side the [pi4j-1.2-SNAPSHOT.deb](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/pi4j-1.2-SNAPSHOT.deb) file to istall the new libraries (old one might have some confligs with pca9685).
 
+
+
+
 Useful files
 
 -[Disabling_the_blank_screen.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Disabling_the_blank_screen.txt) set screen to be always on
