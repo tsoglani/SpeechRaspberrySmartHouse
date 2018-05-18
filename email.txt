@@ -1,4 +1,4 @@
-enable_send_mail_on_boot:true
+enable_send_mail_on_boot:false
 email_from:youdEmail@email.com
 email_password:yourPassword
 email_to:sending@emailOne.com
