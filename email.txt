@@ -1,4 +1,4 @@
 enable_send_mail_on_boot:true
-email_from:drtsoglanakos@gmail.com
-email_password:ng31031988a
+email_from:youdEmail@gmail.com
+email_password:yourPassword
 email_to:drtsoglanakos@gmail.com
