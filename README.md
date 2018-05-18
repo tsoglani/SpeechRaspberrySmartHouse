@@ -27,6 +27,15 @@ In order to use the application:
 
 •	[port.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/port.txt) (lets you choose your preferred port. It must be in the following format "port:____". Default port is 2222)
 
+
+•	[email.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/email.txt) sends email to one or more email addresses notice that the raspberry device just boot (must raspberry have internet connection).
+Be carefull NO vacuum characters.
+enable_send_mail_on_boot :true/false
+email_from:your email address 
+email_password:your email password
+email_to: the email address you want to send it you can use this command multiple times to send it to more than one message.
+
+
 •      [DeviceID.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/DeviceID.txt)  set the id of device, example "DeviceID:0" the device id equals with "0" integer(must be an integer), you modify this file if you want to connect more than one raspberry device at the same network.
 
   In order to load the libraries into Raspberry pi use the following commands (Command line) [link](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Command_Line.md)
