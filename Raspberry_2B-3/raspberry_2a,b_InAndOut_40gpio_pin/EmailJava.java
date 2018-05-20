@@ -9,6 +9,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,8 +25,9 @@ public class EmailJava {
     private Properties mailServerProperties;
     private Session getMailSession;
     private MimeMessage generateMailMessage;
-private String emailFrom,emailTo,password;
-    public EmailJava(String emailFrom,String emailTo,String password ,String newIp ,String device ) {
+private String emailFrom,password;
+private ArrayList<String>  emailTo;
+    public EmailJava(String emailFrom,ArrayList<String> emailTo,String password ,String newIp ,String device ) {
        this.emailFrom=emailFrom;
        this.emailTo=emailTo;
        this.password=password;
@@ -55,7 +57,14 @@ private String emailFrom,emailTo,password;
         getMailSession = Session.getDefaultInstance(mailServerProperties, null);
         generateMailMessage = new MimeMessage(getMailSession);
         //recipient
-        generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
+        for(String to:emailTo){
+            try{
+                generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            }catch(Exception e){
+            e.printStackTrace();
+            }
+        }
+
         //subject
         generateMailMessage.setSubject(subject);
         //email Body       

@@ -149,9 +149,9 @@ new Thread(){
 
                 }
                 try {
-                    for(String emailTo:emailsTo){
-                new EmailJava(emailFrom,emailTo,emailPassword,externalIP,deviceName);
-                    }
+
+                new EmailJava(emailFrom,emailsTo,emailPassword,externalIP,deviceName);
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
