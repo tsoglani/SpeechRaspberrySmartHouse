@@ -1344,6 +1344,8 @@ return ip;
             //                 addresses.add(receivePacket.getAddress());
             //             if(!allPorts.contains(receivePacket.getPort()))
             //                 allPorts.add(receivePacket.getPort());
+            System.out.println("-------------->sentence::"+sentence);
+            
             String uniqueUserID = "1";
             if (sentence.startsWith("userUniqueID:")) {
                 uniqueUserID = sentence.split(DB.USER_ID_SPLIT)[0];
@@ -1462,9 +1464,10 @@ return ip;
                 String[] list = usingCommand.split(DB.COMMAND_SPLIT_STRING);
                 String wantedDeviceIDString = list[0];
                 if (Integer.parseInt(wantedDeviceIDString) == DeviceID) {
-                   
+
                     usingCommand = usingCommand.substring((wantedDeviceIDString + DB.COMMAND_SPLIT_STRING).length(), usingCommand.length());
                     String out = db.add(usingCommand);
+                                                   System.out.println("db.add:::"+usingCommand);
                     if (out != null) {
                         if (!out.equals("addedNotOk")) {
                             sendToAllExcept("Shedules:" + out, receivePacket.getAddress(), receivePacket.getPort());
@@ -1493,7 +1496,7 @@ return ip;
 
                     db.updateShedule(usingCommand, wantedCommandID);//thelw command id edw
 
-
+                                                   System.out.println("saveShedule::"+usingCommand);
                         new SheduleView(fr).createByDeviceGUI(outputPowerCommands[Integer.parseInt(wantedDeviceIDString.replaceAll(" ",""))].get(0));
                     
                 }

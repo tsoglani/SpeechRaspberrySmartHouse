@@ -209,27 +209,28 @@ minLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
         for(int i=0;i<7;i++){
             JLabel dayButton=null;
             switch(i){
+              
                 case 0:
-                dayButton= new JLabel("Su",SwingConstants.CENTER);
-                break;
-                case 1:
                 dayButton= new JLabel("Mo",SwingConstants.CENTER);
                 break;
-                case 2:
+                case 1:
                 dayButton= new JLabel("Tu",SwingConstants.CENTER);
                 break;
-                case 3:
+                case 2:
                 dayButton= new JLabel("We",SwingConstants.CENTER);
                 break;
-                case 4:
+                case 3:
                 dayButton= new JLabel("Th",SwingConstants.CENTER);
                 break;
-                case 5:
+                case 4:
                 dayButton= new JLabel("Fr",SwingConstants.CENTER);
                 break;
-                case 6:
+                case 5:
                 dayButton= new JLabel("Sa",SwingConstants.CENTER);
                 break;    
+                  case 6:
+                dayButton= new JLabel("Su",SwingConstants.CENTER);
+                break;
                 default: 
                 dayButton= new JLabel("Uknown",SwingConstants.CENTER);
 
@@ -314,32 +315,32 @@ minLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
                 public void actionPerformed(ActionEvent e){
 
                     String activeDays = "";
+                    if (isDaySelected(days[6])) {
+                        String extgraString=(isDayOn(days[6]))?" on":" off";
+                        activeDays += Calendar.SUNDAY+extgraString;
+                    }
                     if (isDaySelected(days[0])) {
                         String extgraString=(isDayOn(days[0]))?" on":" off";
-                        activeDays += Calendar.SUNDAY+extgraString;
+                        activeDays += Calendar.MONDAY+extgraString;
                     }
                     if (isDaySelected(days[1])) {
                         String extgraString=(isDayOn(days[1]))?" on":" off";
-                        activeDays += Calendar.MONDAY+extgraString;
+                        activeDays += Calendar.TUESDAY+extgraString;
                     }
                     if (isDaySelected(days[2])) {
                         String extgraString=(isDayOn(days[2]))?" on":" off";
-                        activeDays += Calendar.TUESDAY+extgraString;
+                        activeDays += Calendar.WEDNESDAY+extgraString;
                     }
                     if (isDaySelected(days[3])) {
                         String extgraString=(isDayOn(days[3]))?" on":" off";
-                        activeDays += Calendar.WEDNESDAY+extgraString;
+                        activeDays += Calendar.THURSDAY+extgraString;
                     }
                     if (isDaySelected(days[4])) {
                         String extgraString=(isDayOn(days[4]))?" on":" off";
-                        activeDays += Calendar.THURSDAY+extgraString;
+                        activeDays += Calendar.FRIDAY+extgraString;
                     }
                     if (isDaySelected(days[5])) {
                         String extgraString=(isDayOn(days[5]))?" on":" off";
-                        activeDays += Calendar.FRIDAY+extgraString;
-                    }
-                    if (isDaySelected(days[6])) {
-                        String extgraString=(isDayOn(days[6]))?" on":" off";
                         activeDays += Calendar.SATURDAY+extgraString;
                     }
 
@@ -425,9 +426,20 @@ minLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
     protected void updateDaysEnable(){
 
         if(activeDays.contains(Integer.toString( Calendar.SUNDAY)+" on")){
-            days[0].setBackground(colors[1]);
+            days[6].setBackground(colors[1]);
 
         } else if(activeDays.contains(Integer.toString( Calendar.SUNDAY)+" off")){
+            days[6].setBackground(colors[2]);
+
+        } else {
+            days[6].setBackground(colors[0]);
+
+        }
+
+        if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" on")){
+            days[0].setBackground(colors[1]);
+
+        } else if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" off")){
             days[0].setBackground(colors[2]);
 
         } else {
@@ -435,10 +447,10 @@ minLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
 
         }
 
-        if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" on")){
+        if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" on")){
             days[1].setBackground(colors[1]);
 
-        } else if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" off")){
+        } else if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" off")){
             days[1].setBackground(colors[2]);
 
         } else {
@@ -446,10 +458,10 @@ minLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
 
         }
 
-        if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" on")){
+        if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" on")){
             days[2].setBackground(colors[1]);
 
-        } else if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" off")){
+        } else if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" off")){
             days[2].setBackground(colors[2]);
 
         } else {
@@ -457,10 +469,10 @@ minLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
 
         }
 
-        if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" on")){
+        if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" on")){
             days[3].setBackground(colors[1]);
 
-        } else if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" off")){
+        } else if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" off")){
             days[3].setBackground(colors[2]);
 
         } else {
@@ -468,35 +480,24 @@ minLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
 
         }
 
-        if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" on")){
+        if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" on")){
             days[4].setBackground(colors[1]);
 
-        } else if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" off")){
+        } else if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" off")){
             days[4].setBackground(colors[2]);
 
         } else {
             days[4].setBackground(colors[0]);
 
         }
-
-        if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" on")){
+        if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" on")){
             days[5].setBackground(colors[1]);
 
-        } else if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" off")){
+        } else if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" off")){
             days[5].setBackground(colors[2]);
 
         } else {
             days[5].setBackground(colors[0]);
-
-        }
-        if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" on")){
-            days[6].setBackground(colors[1]);
-
-        } else if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" off")){
-            days[6].setBackground(colors[2]);
-
-        } else {
-            days[6].setBackground(colors[0]);
 
         }
 
