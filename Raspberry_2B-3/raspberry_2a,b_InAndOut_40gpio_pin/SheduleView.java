@@ -153,6 +153,7 @@ public class SheduleView extends JPanel
              final int day2=tempDay+1;
             dayButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
+                    
             createByDayGUI(day2);
             }});
             }
@@ -280,9 +281,16 @@ public class SheduleView extends JPanel
         }
     }
     
+    
+    
+    
+
+    
+     ArrayList <Shedule> containingElements=new ArrayList<Shedule>();
     private int usingDay=-1;
     private void createByDayGUI(int day){
 
+ 
        
                 usingDay=day;
                         selectedOption="createByDayGUI"+day;
@@ -386,6 +394,11 @@ public class SheduleView extends JPanel
                 }};thread.start();}
     }
     
+    
+    
+    
+    
+    
      JScrollPane   scrollSpecific;
     public void createByDeviceGUI(String dev){
         System.out.println("createByDeviceGUI:"+dev);
@@ -473,6 +486,8 @@ JPanel c2= new JPanel();
             if(!list.get(0).equalsIgnoreCase(dev)){
                 continue;
             }
+            
+            System.out.println("--------------list.get(0)"+list.get(0));
             MyJPanel button = new MyJPanel(list.get(0),0);
             myPanels.add(button);
             center.add(button);
@@ -502,11 +517,13 @@ c2.add(scrollSpecific);
                         try{
 
                             ArrayList<Shedule> shedules=fr.sh.db.getShedules();
+                             System.out.println(shedules);
                             if(shedules!=null&&fr.isSheduleModeSelected)
                                 update(shedules);
-                                System.out.println(shedules);
                             Thread.sleep(2000);
-                        }catch(Exception e){}}
+                        }catch(Exception e){
+
+                        }}
                 }};thread.start();}
 
     }
@@ -649,7 +666,8 @@ Dimension maxSize = new Dimension(450, 150);
         setMaximumSize(maxSize);
             }
             
-            if(id==1){
+              
+           else if(id==1){
                 this.title=title;
 
                       setLayout(new BorderLayout());

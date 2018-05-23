@@ -209,7 +209,7 @@ private String getIP() {
             BufferedReader in = new BufferedReader(new InputStreamReader(ipAdress.openStream()));
 
              ip = in.readLine();
-            System.out.println();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -337,7 +337,7 @@ return ip;
                 String numberListString=line.split("@@")[1];
                 String numbersString[] =numberListString.split(",");
                 Integer[] numbers=new Integer[numbersString.length];////////////////
-                System.out.println();
+
                 for (  int i=0;i<numbersString.length;i++){
                     numbers[i]= Integer.parseInt(numbersString[i].replaceAll(" ",""));
                     System.out.println("numbers"+  numbersString[i].replaceAll(" ","")+" ");
@@ -1381,7 +1381,6 @@ return ip;
             if (sentence.startsWith("switch ")) {
 
                 sentence = sentence.substring("switch ".length(), sentence.length());
-                System.out.println(sentence);
                 //   sendData(sentence, receivePacket.getAddress(), receivePacket.getPort());
                 sendToAll(sentence);
                 sendTheUpdates(sentence);
@@ -1422,13 +1421,13 @@ return ip;
                         }
                     }
                 }.start();
-                System.out.println(sentence);
+
             } else if (sentence.startsWith("globalReturning")) {// used when connect for first time and send ok back, when the android receive the ok open to next view
                 sentence = sentence.substring("globalReturning".length());
-                System.out.println(sentence + " " + deviceName);
+
                 if (sentence.replace(" ", "").equalsIgnoreCase(deviceName.replace(" ", ""))) {
                     sendData("ok", receivePacket.getAddress(), receivePacket.getPort());
-                    System.out.println("<ok/>");
+
                 } else {
                     sendData("wrong", receivePacket.getAddress(), receivePacket.getPort());
                     continue;
@@ -1436,7 +1435,7 @@ return ip;
                 //     addresses.add(receivePacket.getAddress());
             } else if (sentence.startsWith("returning")) {// used when connect for first time and send ok back, when the android receive the ok open to next view
                 sendData("ok", receivePacket.getAddress(), receivePacket.getPort());
-                System.out.println("<ok/>");
+
                 //     addresses.add(receivePacket.getAddress());
             } //            if (sentence.startsWith("manual_switch_view")) {
             //                String msg = "works";// getAllOutput();
@@ -1445,7 +1444,7 @@ return ip;
             //            }
             else if (sentence.startsWith("getAllOutput")) { // I say than I need all the outputs
                 String msg = getAllOutput();//"getput on@@@getoutt2 off";//
-                System.out.println("msg = " + msg);
+
                 if (msg != null && !msg.replaceAll(" ", "").equalsIgnoreCase("")) {
                     sendData("respondGetAllOutput" + msg, receivePacket.getAddress(), receivePacket.getPort());
                 }
@@ -1455,7 +1454,7 @@ return ip;
                 if (msg != null && !msg.replaceAll(" ", "").equalsIgnoreCase("")) {
                     sendData("respondGetAllCommandsOutput" + msg, receivePacket.getAddress(), receivePacket.getPort());
                 }
-                System.out.println(msg);
+
             } else if (sentence.startsWith("saveShedule")) { // I say than I need all the commands that open ports with each one state ( Example : "kitchen light on" kitchen light is the commands and on or of are the states  )
                 //prepei na stelnw device id
 
@@ -1467,7 +1466,8 @@ return ip;
 
                     usingCommand = usingCommand.substring((wantedDeviceIDString + DB.COMMAND_SPLIT_STRING).length(), usingCommand.length());
                     String out = db.add(usingCommand);
-                                                   System.out.println("db.add:::"+usingCommand);
+                    String cmd=usingCommand.substring("CommandText:".length(),usingCommand.length()).split(DB.COMMAND_SPLIT_STRING)[0];
+
                     if (out != null) {
                         if (!out.equals("addedNotOk")) {
                             sendToAllExcept("Shedules:" + out, receivePacket.getAddress(), receivePacket.getPort());
@@ -1478,7 +1478,10 @@ return ip;
                     }
 
 
-                        new SheduleView(fr).createByDeviceGUI(outputPowerCommands[Integer.parseInt(wantedDeviceIDString.replaceAll(" ",""))].get(0));
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+                        new SheduleView(fr).createByDeviceGUI(cmd);
+                    
+
                     
                 }
             } else if (sentence.startsWith("updateShedule")) { // I say than I need all the commands that open ports with each one state ( Example : "kitchen light on" kitchen light is the commands and on or of are the states  )
@@ -1487,7 +1490,7 @@ return ip;
                 String[] list = usingCommand.split(DB.COMMAND_SPLIT_STRING);
                 String wantedDeviceIDString = list[0];
                 if (Integer.parseInt(wantedDeviceIDString) == DeviceID) {
-                    
+
                     usingCommand = usingCommand.substring((wantedDeviceIDString + DB.COMMAND_SPLIT_STRING + DB.COMMAND_ID).length(), usingCommand.length());
 
                     String wantedCommandID = usingCommand.split(DB.COMMAND_SPLIT_STRING)[0];
@@ -1495,9 +1498,10 @@ return ip;
                     usingCommand = usingCommand.substring((wantedCommandID + DB.COMMAND_SPLIT_STRING).length(), usingCommand.length());
 
                     db.updateShedule(usingCommand, wantedCommandID);//thelw command id edw
+                                        String cmd=usingCommand.substring("CommandText:".length(),usingCommand.length()).split(DB.COMMAND_SPLIT_STRING)[0];
 
-                                                   System.out.println("saveShedule::"+usingCommand);
-                        new SheduleView(fr).createByDeviceGUI(outputPowerCommands[Integer.parseInt(wantedDeviceIDString.replaceAll(" ",""))].get(0));
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+                        new SheduleView(fr).createByDeviceGUI(cmd);
                     
                 }
             } else if (sentence.startsWith("updateSingleShedule")) { // I say than I need all the commands that open ports with each one state ( Example : "kitchen light on" kitchen light is the commands and on or of are the states  )
@@ -1519,7 +1523,9 @@ return ip;
                     db.updateSingleShedule(usingCommand, wantedCommandID, stringModeModify);//thelw command id edw
 
 
-                        new SheduleView(fr).createByDeviceGUI(outputPowerCommands[Integer.parseInt(wantedDeviceIDString.replaceAll(" ",""))].get(0));
+                                        String cmd=usingCommand.substring("CommandText:".length(),usingCommand.length()).split(DB.COMMAND_SPLIT_STRING)[0];
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+                        new SheduleView(fr).createByDeviceGUI(cmd);
                     
                 }
             } else if (sentence.startsWith("removeShedule")) { // I say than I need all the commands that open ports with each one state ( Example : "kitchen light on" kitchen light is the commands and on or of are the states  )
@@ -1529,14 +1535,15 @@ return ip;
                 String usingCommand = sentence.substring(("removeShedule:" + DB.DEVICE_ID).length(), sentence.length());
                 String[] list = usingCommand.split(DB.COMMAND_SPLIT_STRING);
                 String wantedDeviceIDString = list[0];
-                //  System.out.println(usingCommand);
+
                 if (Integer.parseInt(wantedDeviceIDString) == DeviceID) {
                    
                     usingCommand = list[1].substring((DB.COMMAND_TEXT_STRING).length(), list[1].length());
 
                     db.removeShedule(usingCommand, list[2]);//thelw command id edw
 
-                        new SheduleView(fr).createByDeviceGUI(outputPowerCommands[Integer.parseInt(wantedDeviceIDString.replaceAll(" ",""))].get(0));
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+                        new SheduleView(fr).createByDeviceGUI( list[2]);
                     
                 }
             } else if (sentence.equals("getShedules")) {
@@ -1620,7 +1627,7 @@ return ip;
             if (!existAsLed) {
 
                 processCommandString(sentence);
-                System.out.println("processCommandString runs ");
+
             }
         }
 
@@ -1828,12 +1835,12 @@ return ip;
                 if (input.startsWith(outputPowerCommands[i].get(j))) {
 
                     if (ON.contains(isDoing)) {
-                        // System.out.println("found command " + outputPowerCommands[i].get(j) + " on" + ", these ports will open: " + activatePortOnCommand[i]);
+
                         for (int k = 0; k < activatePortOnCommand[i].size(); k++) {
                             ToggleLedNo(activatePortOnCommand[i].get(k), ON.get(0));
                         }
                     } else if (OFF.contains(isDoing)) {
-                        // System.out.println("found command " + outputPowerCommands[i].get(j) + " off" + ", these ports will close: " + activatePortOnCommand[i]);
+
                         for (int k = 0; k < activatePortOnCommand[i].size(); k++) {
                             ToggleLedNo(activatePortOnCommand[i].get(k), OFF.get(0));
                         }
@@ -2064,7 +2071,7 @@ return ip;
         boolean isHightPrevious =false;
         public GpioUsageExampleListener(GpioPinDigitalInput in, int id) {
             this.in = in;
-            System.out.println(" id " + id);
+
             this.id = id;
             isHightPrevious=in.isHigh();
             this.command = outputCommands[id].get(0);
@@ -2263,13 +2270,12 @@ return ip;
                     for (int i = 0; i < db.getShedules().size(); i++) {
                         Shedule shedule = db.getShedules().get(i);
                         if (Boolean.parseBoolean(shedule.getIsActive())) {
-                            System.out.println("isActive");
+
                             if (shedule.getActiveDays().contains(getDay(calendar))) {
 
-                                System.out.println("Contains Day");
-                                System.out.println(shedule.getTime() + " timers" + getTime(calendar));
+                               
                                 if (shedule.getTime().equals(getTime(calendar))) {
-                                    System.out.println("Time is equal");
+
                                     // excecute command
                                     String extraString = null;
                                     if (shedule.getActiveDays().contains(getDay(calendar) + " on")) {
@@ -2278,7 +2284,7 @@ return ip;
                                     if (shedule.getActiveDays().contains(getDay(calendar) + " off")) {
                                         extraString = " off";
                                     }
-                                    System.out.println(shedule.getCommandText() + extraString + "  excecuted");
+
                                     processCommandString(shedule.getCommandText() + extraString);
 
                                     if (!Boolean.parseBoolean(shedule.getIsWeekly())) {
@@ -2308,16 +2314,14 @@ return ip;
                                             for (int h = 0; h < activatePortOnCommand[j].size(); h++) {
                                                 //
                                                 for (int p = 0; p < pins.length; p++) {
-                                                    System.out.println(p + " pins[p].getPin().getAddress()= " + pins[p].getPin().getAddress());
+
                                                     if (pins[p].getPin().getAddress() == activatePortOnCommand[j].get(h)) {
 
                                                         // System.out.println(DeviceID+ " switch "+p+" "+mode);
                                                         sendToAll("switch " + DeviceID + " output " + p + " " + mode);
                                                     }
                                                 }
-                                                // System.out.print( activatePortOnCommand[j].get(h)+" ");
-                                                //  System.out.println(h+"switch "+ outputCommands[activatePortOnCommand[j].get(0)]+" "+mode);
-                                                //       System.out.println(h+"switch "+ outputCommands[activatePortOnCommand[h].get(0)]+" "+mode);
+                                             
                                             }
 
                                         }
@@ -2339,7 +2343,7 @@ return ip;
     }
 
     protected void sendTheUpdates(String command) {
-        //   System.out.println("outputPowerCommands = "+command);
+
         String mode = null;
         String shCm = null;
         if (command.endsWith(" on")) {
@@ -2368,16 +2372,13 @@ return ip;
                         if (pins[p].getPin().getAddress() == activatePortOnCommand[j].get(h)) {
 
                             int sendid = getRealOutLed(p);
-                            System.out.println("switch " + outputCommands[p].get(0) + " " + mode);
-                            //    System.out.println("switch "+DeviceID+ " output "+sendid+" "+mode);
-                            // sendToAll("switch "+DeviceID+ " output "+sendid+" "+mode);
+                         //   System.out.println("switch " + outputCommands[p].get(0) + " " + mode);
+                          
                             sendToAll("switch " + outputCommands[p].get(0) + " " + mode);
                         }
                     }
 
-                    // System.out.print( activatePortOnCommand[j].get(h)+" ");
-                    //  System.out.println(h+"switch "+ outputCommands[activatePortOnCommand[j].get(0)]+" "+mode);
-                    //       System.out.println(h+"switch "+ outputCommands[activatePortOnCommand[h].get(0)]+" "+mode);
+                   
                 }
 
                 for (int k = 0; k < activatePortOnCommand.length; k++) {
@@ -2385,7 +2386,7 @@ return ip;
                         if (activatePortOnCommand[j].containsAll(activatePortOnCommand[k])) {
 
                             sendToAll("switch " + outputPowerCommands[k].get(0) + " " + mode);
-                            // System.out.println("update 1 switch "+outputPowerCommands[k].get(0)+" "+mode);
+
                         }
                         if (activatePortOnCommand[k].containsAll(activatePortOnCommand[j])) {
                             if (mode.equals(OFF.get(0))) {

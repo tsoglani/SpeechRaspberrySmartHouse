@@ -142,7 +142,7 @@ public class DB implements Serializable{
 
     public synchronized String add(String command) {
         
-        System.out.println("add:::"+command);
+
         Shedule shedule = new Shedule();
         shedule.setId(getnewID());
         shedule.setActiveDays(getDays(command));
@@ -156,28 +156,37 @@ public class DB implements Serializable{
         for(int i=0;i<sheduleList.size();i++){
 
             if(sheduleList.get(i).getId()==shedule.getId()){
+
                 isGointToADd= false;
             }
 
             if(sheduleList.get(i).getCommands().equals(shedule.getCommands())){
-                System.out.println("false");
+
+
                 isGointToADd= false;
             }
 
         }
         if(isGointToADd){
+
             if(sheduleList.add(shedule)){
                 addShedule(shedule);
+
                 return"DeviceID:"+SH.DeviceID+COMMAND_SPLIT_STRING+shedule.toString();
 
             }
-        }return"addedNotOk";
+        }
+        
+        
+
+        return"addedNotOk";
     }
 
     public synchronized void updateSingleShedule(String command,String commandID,String commantModeText) {
 
         int cmdID=Integer.parseInt(commandID);
         if(!conainsCommandInDevice(command)){
+
             return ;
         }
 

@@ -359,7 +359,7 @@ isActive.setSelected(true);
                         + activeDays+fr.sh.db.COMMAND_SPLIT_STRING+fr.sh.db.TIME_STRING+timeLabel.getText()
                         +fr.sh.db.COMMAND_SPLIT_STRING+fr.sh.db.IS_WEEKLY+isWeekly.isSelected() +fr.sh.db.COMMAND_SPLIT_STRING+
                         fr.sh.db.IS_ACTIVE+isActive.isSelected();
-                  
+                  System.out.println("DATABASE::"+CommandText);
                 fr.sh.db.add(CommandText);
                     
                       
