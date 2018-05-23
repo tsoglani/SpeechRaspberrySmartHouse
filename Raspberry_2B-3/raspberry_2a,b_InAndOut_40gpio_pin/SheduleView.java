@@ -715,11 +715,15 @@ Dimension maxSize = new Dimension(450, 150);
             titlePanel.add(titleLabel);
             setBackground(colors[color_id]);
             titlePanel.setBackground(colors[color_id]);
-            add(titlePanel,BorderLayout.PAGE_START);
+           // add(titlePanel,BorderLayout.PAGE_START);
             //  add(centerPanel);           
-            
-                        centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
-                 JScrollPane      scrollSpecific = new JScrollPane(centerPanel);
+            JPanel extraPanel= new JPanel();
+            extraPanel.setLayout(new BorderLayout());
+            extraPanel.add(titlePanel,BorderLayout.PAGE_START);
+                centerPanel.setLayout(new WrapLayout());
+                extraPanel.add(centerPanel);
+                        //centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
+                 JScrollPane      scrollSpecific = new JScrollPane(extraPanel);
 scrollSpecific.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 scrollSpecific.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
            
@@ -838,6 +842,8 @@ Dimension pSize = new Dimension(450, 140);
 
                     }
                 });
+                
+
             centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
             centerPanel.add(firstRow);
             centerPanel.add(secondRow);
