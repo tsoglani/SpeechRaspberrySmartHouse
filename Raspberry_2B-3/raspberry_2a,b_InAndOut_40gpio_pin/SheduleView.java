@@ -132,20 +132,21 @@ public class SheduleView extends JPanel
             JButton dayButton=null;
              for(int day=0;day<7;day++){
             switch(day){
-            case 0:dayButton= new JButton("Monday");
+                 case 0:dayButton= new JButton("Sunday");
             break;
-            case 1:dayButton= new JButton("Tuesday");
+            case 1:dayButton= new JButton("Monday");
             break;
-            case 2:dayButton= new JButton("Wednesday");
+            case 2:dayButton= new JButton("Tuesday");
             break;
-            case 3:dayButton= new JButton("Thursday");
+            case 3:dayButton= new JButton("Wednesday");
             break;
-            case 4:dayButton= new JButton("Friday");
+            case 4:dayButton= new JButton("Thursday");
             break;
-            case 5:dayButton= new JButton("Saturday");
+            case 5:dayButton= new JButton("Friday");
             break;
-            case 6:dayButton= new JButton("Sunday");
+            case 6:dayButton= new JButton("Saturday");
             break;
+           
             }
             add(dayButton);
            int tempDay=day;
@@ -170,6 +171,12 @@ public class SheduleView extends JPanel
         fr.revalidate();
         
     }
+    
+    
+    
+    
+    
+    
     private void byDeviceView(){
         fr.getContentPane().removeAll();
         removeAll();
@@ -187,7 +194,8 @@ public class SheduleView extends JPanel
         }
 
 
-        setLayout(new GridLayout((int)Math.sqrt(devices.size()),(int)Math.sqrt(devices.size())));
+               setLayout(new GridLayout((int)Math.sqrt(devices.size()),(int)Math.sqrt(devices.size())));
+
         for (int i=0;i<devices.size();i++){
             String dv=devices.get(i);
             JButton devButton= new JButton(dv);
@@ -290,7 +298,7 @@ public class SheduleView extends JPanel
     private int usingDay=-1;
     private void createByDayGUI(int day){
 
- 
+ byDayCommandUsed.removeAll(byDayCommandUsed);
        
                 usingDay=day;
                         selectedOption="createByDayGUI"+day;
@@ -323,7 +331,7 @@ public class SheduleView extends JPanel
                JComboBox commandCombo ;
 
         
-        String [] comboCommandsString={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+        String [] comboCommandsString={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
       
 
         commandCombo= new JComboBox(comboCommandsString);
@@ -359,15 +367,39 @@ public class SheduleView extends JPanel
         usingList=fr.sh.outputPowerCommands;
         neededOutputs=fr.sh.getAllCommandOutput();
         String [] outputs=neededOutputs.split("@@@");
-        center.setLayout(new GridLayout(0,(int)(fr.width/450)));
+        
+     
+        
+        
+        
+                            ArrayList<Shedule> shedules2=fr.sh.db.getShedules();
+     for(Shedule d:shedules2){
+                         System.out.println(" day"+d.getActiveDays()+"::vs::"+day);
+             if(d.getActiveDays().contains(day+" off")||d.getActiveDays().contains(day+" on")){
+                System.out.println("Same day"+d.getActiveDays()+"::vs::"+day);
+                
+                
+           if(!byDayCommandUsed.contains(d.getCommandText())){
 
-        for(int i=0;i<usingList.length;i++){
-            ArrayList <String> list=usingList[i];
-            MyJPanel button = new MyJPanel(list.get(0),1);////1
-            myPanels.add(button);
-            center.add(button);
-
-        }
+     String cmd=d.getCommandText();
+           MyJPanel button = new MyJPanel(cmd,1);////1
+            byDayCommandUsed.add(cmd);
+           myPanels.add(button);
+         center.add(button);
+       }
+    
+    
+    }
+       }
+     
+        
+        int row=(int)(Math.sqrt(byDayCommandUsed.size())),colum=(int)(Math.sqrt(byDayCommandUsed.size()));
+        if(row==0&&colum==0){
+        row=1;
+        colum=1;
+    }
+        center.setLayout(new  GridLayout(row+1,colum+1));
+       
     // scrollSpecific = new JScrollPane(center);
                 add(center);
         repaint();
@@ -380,20 +412,25 @@ public class SheduleView extends JPanel
                     while(fr.isSheduleModeSelected)   {
                         try{
 
+                              
+    
+                            
                             ArrayList<Shedule> shedules=fr.sh.db.getShedules();
-                                                        ArrayList<Shedule> activeShedules=new ArrayList<Shedule>();
-                            for(Shedule s:shedules){
-                                System.out.println(s.getActiveDays());
-                            if(s.getActiveDays(). contains(Integer.toString(usingDay)))
-                            activeShedules.add(s);
+                                                       ArrayList<Shedule> activeShedules=new ArrayList<Shedule>();
+                          for(Shedule s:shedules){
+
+                          if(s.getActiveDays(). contains(Integer.toString(usingDay)))
+                           activeShedules.add(s);
                         }
-  if(shedules!=null&&fr.isSheduleModeSelected)
-                                update(activeShedules);
+  if(shedules!=null&&fr.isSheduleModeSelected){
+      update(activeShedules);
+    }
+                              
                             Thread.sleep(2000);
                         }catch(Exception e){}}
                 }};thread.start();}
     }
-    
+    ArrayList <String>byDayCommandUsed= new ArrayList<String>();
     
     
     
@@ -815,28 +852,28 @@ Dimension pSize = new Dimension(450, 140);
             for(int i=0;i<7;i++){
                 JLabel dayButton=null;
                 switch(i){
-                   
-                    case 0:
-                    dayButton= new JLabel("Mo",SwingConstants.CENTER);
-                    break;
-                    case 1:
-                    dayButton= new JLabel("Tu",SwingConstants.CENTER);
-                    break;
-                    case 2:
-                    dayButton= new JLabel("We",SwingConstants.CENTER);
-                    break;
-                    case 3:
-                    dayButton= new JLabel("Th",SwingConstants.CENTER);
-                    break;
-                    case 4:
-                    dayButton= new JLabel("Fr",SwingConstants.CENTER);
-                    break;
-                    case 5:
-                    dayButton= new JLabel("Sa",SwingConstants.CENTER);
-                    break;    
-                     case 6:
+                      case 0:
                     dayButton= new JLabel("Su",SwingConstants.CENTER);
                     break;
+                    case 1:
+                    dayButton= new JLabel("Mo",SwingConstants.CENTER);
+                    break;
+                    case 2:
+                    dayButton= new JLabel("Tu",SwingConstants.CENTER);
+                    break;
+                    case 3:
+                    dayButton= new JLabel("We",SwingConstants.CENTER);
+                    break;
+                    case 4:
+                    dayButton= new JLabel("Th",SwingConstants.CENTER);
+                    break;
+                    case 5:
+                    dayButton= new JLabel("Fr",SwingConstants.CENTER);
+                    break;
+                    case 6:
+                    dayButton= new JLabel("Sa",SwingConstants.CENTER);
+                    break;    
+                  
                     default: 
                     dayButton= new JLabel("Uknown",SwingConstants.CENTER);
 
@@ -938,20 +975,9 @@ Dimension pSize = new Dimension(450, 140);
         protected void updateDaysEnable(){
 
             if(activeDays.contains(Integer.toString( Calendar.SUNDAY)+" on")){
-                days[6].setBackground(colors[1]);
-
-            } else if(activeDays.contains(Integer.toString( Calendar.SUNDAY)+" off")){
-                days[6].setBackground(colors[2]);
-
-            } else {
-                days[6].setBackground(colors[0]);
-
-            }
-
-            if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" on")){
                 days[0].setBackground(colors[1]);
 
-            } else if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" off")){
+            } else if(activeDays.contains(Integer.toString( Calendar.SUNDAY)+" off")){
                 days[0].setBackground(colors[2]);
 
             } else {
@@ -959,10 +985,10 @@ Dimension pSize = new Dimension(450, 140);
 
             }
 
-            if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" on")){
+            if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" on")){
                 days[1].setBackground(colors[1]);
 
-            } else if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" off")){
+            } else if(activeDays.contains(Integer.toString( Calendar.MONDAY)+" off")){
                 days[1].setBackground(colors[2]);
 
             } else {
@@ -970,10 +996,10 @@ Dimension pSize = new Dimension(450, 140);
 
             }
 
-            if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" on")){
+            if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" on")){
                 days[2].setBackground(colors[1]);
 
-            } else if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" off")){
+            } else if(activeDays.contains(Integer.toString( Calendar.TUESDAY)+" off")){
                 days[2].setBackground(colors[2]);
 
             } else {
@@ -981,10 +1007,10 @@ Dimension pSize = new Dimension(450, 140);
 
             }
 
-            if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" on")){
+            if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" on")){
                 days[3].setBackground(colors[1]);
 
-            } else if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" off")){
+            } else if(activeDays.contains(Integer.toString( Calendar.WEDNESDAY)+" off")){
                 days[3].setBackground(colors[2]);
 
             } else {
@@ -992,24 +1018,35 @@ Dimension pSize = new Dimension(450, 140);
 
             }
 
-            if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" on")){
+            if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" on")){
                 days[4].setBackground(colors[1]);
 
-            } else if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" off")){
+            } else if(activeDays.contains(Integer.toString( Calendar.THURSDAY)+" off")){
                 days[4].setBackground(colors[2]);
 
             } else {
                 days[4].setBackground(colors[0]);
 
             }
-            if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" on")){
+
+            if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" on")){
                 days[5].setBackground(colors[1]);
 
-            } else if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" off")){
+            } else if(activeDays.contains(Integer.toString( Calendar.FRIDAY)+" off")){
                 days[5].setBackground(colors[2]);
 
             } else {
                 days[5].setBackground(colors[0]);
+
+            }
+            if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" on")){
+                days[6].setBackground(colors[1]);
+
+            } else if(activeDays.contains(Integer.toString( Calendar.SATURDAY)+" off")){
+                days[6].setBackground(colors[2]);
+
+            } else {
+                days[6].setBackground(colors[0]);
 
             }
 

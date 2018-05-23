@@ -1478,7 +1478,7 @@ return ip;
                     }
 
 
-if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("all")))
                         new SheduleView(fr).createByDeviceGUI(cmd);
                     
 
@@ -1500,7 +1500,7 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
                     db.updateShedule(usingCommand, wantedCommandID);//thelw command id edw
                                         String cmd=usingCommand.substring("CommandText:".length(),usingCommand.length()).split(DB.COMMAND_SPLIT_STRING)[0];
 
-if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("all")))
                         new SheduleView(fr).createByDeviceGUI(cmd);
                     
                 }
@@ -1524,7 +1524,7 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
 
 
                                         String cmd=usingCommand.substring("CommandText:".length(),usingCommand.length()).split(DB.COMMAND_SPLIT_STRING)[0];
-if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("all")))
                         new SheduleView(fr).createByDeviceGUI(cmd);
                     
                 }
@@ -1542,7 +1542,7 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
 
                     db.removeShedule(usingCommand, list[2]);//thelw command id edw
 
-if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("createByDayGUI")&&!SheduleView.selectedOption.startsWith("all")&&!SheduleView.selectedOption.startsWith("createByDeviceGUI")))
+if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!SheduleView.selectedOption.startsWith("all")))
                         new SheduleView(fr).createByDeviceGUI( list[2]);
                     
                 }
