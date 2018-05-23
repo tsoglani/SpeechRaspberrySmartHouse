@@ -398,7 +398,7 @@ public class SheduleView extends JPanel
         row=1;
         colum=1;
     }
-        center.setLayout(new  GridLayout(row+1,colum+1));
+        center.setLayout(new  GridLayout(row,colum));
        
     // scrollSpecific = new JScrollPane(center);
                 add(center);
