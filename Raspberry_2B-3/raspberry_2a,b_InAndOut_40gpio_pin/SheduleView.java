@@ -12,9 +12,10 @@ public class SheduleView extends JPanel
     private  Color []colors = {Color.white,Color.green,Color.red};
     private ArrayList   <MyJPanel> myPanels;
     private JButton addNewSchedule;
-    ImageIcon addSchedule;
-    Thread thread;
-     ImageIcon backTime;
+    private ImageIcon addSchedule;
+  private  Thread thread;
+   private  ImageIcon backTime;
+     final int sleepingTime=400;
     static  String selectedOption=null;
     public SheduleView(Fr fr)
     {
@@ -234,7 +235,7 @@ public class SheduleView extends JPanel
 
     ArrayList<SingleSheduleView> deletedSingleSheduleView = new ArrayList<SingleSheduleView>();
 
-    protected void update(ArrayList<Shedule> sheduleList){
+    protected synchronized void update(ArrayList<Shedule> sheduleList){
         if(sheduleList!=null){
             for(int i=0;i<sheduleList.size();i++){
                 Shedule shedule=sheduleList.get(i);
@@ -423,10 +424,16 @@ public class SheduleView extends JPanel
                            activeShedules.add(s);
                         }
   if(shedules!=null&&fr.isSheduleModeSelected){
-      update(activeShedules);
+
+         new Thread(){
+       public void run(){
+                update(activeShedules);
+        }
+        }.start();
+      
     }
                               
-                            Thread.sleep(2000);
+                            Thread.sleep(sleepingTime);
                         }catch(Exception e){}}
                 }};thread.start();}
     }
@@ -556,8 +563,19 @@ c2.add(scrollSpecific);
                             ArrayList<Shedule> shedules=fr.sh.db.getShedules();
                              System.out.println(shedules);
                             if(shedules!=null&&fr.isSheduleModeSelected)
-                                update(shedules);
-                            Thread.sleep(2000);
+ {                            //   update(shedules);
+               
+
+         new Thread(){
+      public  void run(){
+                update(shedules);
+        }
+        }.start();
+      
+      
+
+}
+                            Thread.sleep(sleepingTime);
                         }catch(Exception e){
 
                         }}
@@ -624,9 +642,18 @@ c2.add(scrollSpecific);
                         try{
 
                             ArrayList<Shedule> shedules=fr.sh.db.getShedules();
-  if(shedules!=null&&fr.isSheduleModeSelected)
-                                update(shedules);
-                            Thread.sleep(2000);
+  if(shedules!=null&&fr.isSheduleModeSelected){
+      
+      new Thread(){
+       public void run(){
+                update(shedules);
+        }
+        }.start();
+
+    
+    }
+  
+                            Thread.sleep(sleepingTime);
                         }catch(Exception e){}}
                 }};thread.start();}
 
@@ -740,7 +767,7 @@ Dimension pSize = new Dimension(450, 140);
    
         }
 
-        protected void update(Shedule shedule,ArrayList<Shedule> sheduleList){
+        protected synchronized void update(Shedule shedule,ArrayList<Shedule> sheduleList){
             boolean contains=false;
             SingleSheduleView usingSsv=null;
 
@@ -926,7 +953,7 @@ Dimension pSize = new Dimension(450, 140);
                                         delete.setIcon(deleteAmbIcon);
                                         delete.setEnabled(false);
                                     }
-                                    sleep(3000);
+                                    sleep(sleepingTime+1000);
                                     if(delete!=null){
                                         delete.setIcon(deleteIcon);
                                         delete.setEnabled(true);

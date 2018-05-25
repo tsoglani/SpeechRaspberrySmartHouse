@@ -39,12 +39,10 @@ ArrayList <String>stAdd=new ArrayList<String>();
                     for (int i = 0; i < sh.sendingTo.size(); i++) {
                         Object[] obj =  sh.sendingTo.get(i);
                         InetAddress ia = (InetAddress) obj[0];
-
-                        
-stAdd.add(ia.toString());
- Socket s = new Socket(ia.toString(), PORT);
-
-                            System.out.println("success   " + ia.toString());
+                            System.out.println("try  1 " + ia.toString());
+                          stAdd.add(ia.toString());
+                           Socket s = new Socket(ia.toString(), PORT);
+                            System.out.println("success  1 " + ia.toString());
 
                             s.close();
                     }
@@ -66,6 +64,7 @@ stAdd.add(ia.toString());
         
         
         ArrayList<String> ipList = getLocal();
+System.out.println("ipList " + ipList);
 
         for (String ip : ipList) {
             for (int i = 1; i < 255; i++) {
@@ -73,14 +72,16 @@ stAdd.add(ia.toString());
                 if(stAdd.contains(checkIp)){
                 continue;
                 }
+             
                 new Thread() {
                     public void run() {
                         try {
+
                             //      System.out.println(checkIp + "  :  " + InetAddress.getByName(checkIp).isReachable(2000));
-
-                            Socket s = new Socket(checkIp, PORT);
-
-                            System.out.println("success   " + checkIp);
+                          //  System.out.println("try  2 " + checkIp);
+                            //Socket s = new Socket(checkIp, PORT);
+                      Socket s = new Socket(checkIp, PORT);
+                          //  System.out.println("success  2 " + checkIp);
 
                             s.close();
 
