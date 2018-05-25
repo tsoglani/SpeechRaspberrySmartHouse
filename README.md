@@ -12,7 +12,7 @@ In order to use the application:
 3.	Modify the following files:
 
 •	 [Commands.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/commands.txt)  assign your devices to the respective output. Devices after the double comma can be controlled by voice e.g. “kitchen_light,, kitchen_lamp@@0” after double @@ is the output, the    
-      file is bound to gpio_input_output.txt, etc if we combine our examples, the kitchen light will assign to output 15/gpio15, 0->15 if it was after @@ the value 1 would go compare the 2 examples to 16.
+      file is bound to gpio_input_output.txt, etc if we combine our examples, the kitchen light will assign to output 15/gpio15, 0->15 if it was after @@ the value 1 would go compare the 2 examples to 16.    // not using on or off String as command last word
 
 •	[DeviceName.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/deviceName.txt)  (assign the user/s allowed to interact with the application)
 
