@@ -1329,7 +1329,9 @@ return ip;
 
     private void startReceivingData() throws IOException {
         boolean isOnSwitchView = false;
+        try{
         serverSocket = new DatagramSocket(port);
+    }catch(Exception e){}
         System.out.println("Waiting for data..");
         while (true) {
             boolean existAsLed;

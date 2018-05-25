@@ -235,7 +235,7 @@ public class SheduleView extends JPanel
 
     ArrayList<SingleSheduleView> deletedSingleSheduleView = new ArrayList<SingleSheduleView>();
 
-    protected synchronized void update(ArrayList<Shedule> sheduleList){
+    protected void update(ArrayList<Shedule> sheduleList){
         if(sheduleList!=null){
             for(int i=0;i<sheduleList.size();i++){
                 Shedule shedule=sheduleList.get(i);
@@ -425,11 +425,9 @@ public class SheduleView extends JPanel
                         }
   if(shedules!=null&&fr.isSheduleModeSelected){
 
-         new Thread(){
-       public void run(){
+        
                 update(activeShedules);
-        }
-        }.start();
+       
       
     }
                               
@@ -566,11 +564,9 @@ c2.add(scrollSpecific);
  {                            //   update(shedules);
                
 
-         new Thread(){
-      public  void run(){
+    
                 update(shedules);
-        }
-        }.start();
+  
       
       
 
@@ -644,11 +640,9 @@ c2.add(scrollSpecific);
                             ArrayList<Shedule> shedules=fr.sh.db.getShedules();
   if(shedules!=null&&fr.isSheduleModeSelected){
       
-      new Thread(){
-       public void run(){
+     
                 update(shedules);
-        }
-        }.start();
+  
 
     
     }
@@ -767,7 +761,7 @@ Dimension pSize = new Dimension(450, 140);
    
         }
 
-        protected synchronized void update(Shedule shedule,ArrayList<Shedule> sheduleList){
+        protected  void update(Shedule shedule,ArrayList<Shedule> sheduleList){
             boolean contains=false;
             SingleSheduleView usingSsv=null;
 
