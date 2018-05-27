@@ -15,7 +15,7 @@ public class SheduleView extends JPanel
     private ImageIcon addSchedule;
   private  Thread thread;
    private  ImageIcon backTime;
-     final int sleepingTime=400;
+     final int sleepingTime=600;
     static  String selectedOption=null;
     public SheduleView(Fr fr)
     {
