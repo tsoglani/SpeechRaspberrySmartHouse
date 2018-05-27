@@ -1,3 +1,6 @@
-exclusiveOutputs:1,2,3
-exclusiveOutputs:5,6
+//exclusiveOutputs:1,2,3
+//exclusiveOutputs:5,6
 
+
+
+// to work remove "//"
