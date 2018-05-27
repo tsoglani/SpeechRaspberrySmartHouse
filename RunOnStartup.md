@@ -1,12 +1,16 @@
 **1st way </br>
 on command line enter</br>
-nano ~/.config/lxsession/LXDE-pi/autostart</br>
+-nano ~/.config/lxsession/LXDE-pi/autostart</br>
 and enter at the end of showing list</br>
-@lxterminal -e /home/pi/Desktop/SmartHouseServer.sh</br>
+-@lxterminal -e /home/pi/Desktop/SmartHouseServer.sh</br>
 
-enter sudo nano /home/pi/Desktop/SmartHouseServer.sh
-then coppy-paste [SmartHouseServer.sh ](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Raspberry_2B-3/SmartHouseServer.sh)
-sudo chmod 777 /home/pi/Desktop/SmartHouseServer.sh
+
+
+-enter sudo nano /home/pi/Desktop/SmartHouseServer.sh
+     coppy-paste [SmartHouseServer.sh ](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Raspberry_2B-3/SmartHouseServer.sh)
+-- or copy and paste on Desktop   [SmartHouseServer.sh ](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Raspberry_2B-3/SmartHouseServer.sh)  
+
+-sudo chmod 777 /home/pi/Desktop/SmartHouseServer.sh
 
 
 
