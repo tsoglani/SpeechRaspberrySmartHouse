@@ -38,6 +38,9 @@ email_to: the email address you want to send it you can use this command multipl
 
 •      [DeviceID.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/DeviceID.txt)  set the id of device, example "DeviceID:0" the device id equals with "0" integer(must be an integer), you modify this file if you want to connect more than one raspberry device at the same network.
 
+
+•      [isGoingToBeOn_OnSwitchOn.txt](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/isGoingToBeOn_OnSwitchOn.txt) by default is false. When its false, the output is "independent" from the switch/button, for example lets say the output is a lamp, the lamp will turn on or off when the switch turns, doesnt matter if the switch's state is on or off. on isGoingToBeOn_OnSwitchOn=true the output will turn on only if the input is at on state. 
+
   In order to load the libraries into Raspberry pi use the following commands (Command line) [link](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/Command_Line.md)
 
   You can set the application to run on startup by following these instructions  [link](https://github.com/tsoglani/SpeechRaspberrySmartHouse/blob/master/RunOnStartup.md)
