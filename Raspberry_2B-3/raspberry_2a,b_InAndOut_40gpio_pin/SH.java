@@ -69,7 +69,34 @@ public class SH {
     private ArrayList<String> ON, OFF;// = "on", OFF = "off";// word you have to use at the end of the command to activate or deactivate
     private ArrayList<String> ONAtTheStartOfSentence, OFFAtTheStartOfSentence;
     private  ArrayList<String> exclusiveOutputs= new ArrayList<String>();;
+private boolean isGoingToBeOn_OnSwitchOn=false;
+    
+     public  void isGoingToBeOn_OnSwitchOn(String fileName){
 
+        String line;
+        BufferedReader br;
+        try {
+            InputStream fis = null;
+            fis = new FileInputStream(fileName);
+
+            InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
+            br = new BufferedReader(isr);
+            int counter =0;
+            while ((line = br.readLine()) != null) {
+
+                if (line.startsWith("isGoingToBeOn_OnSwitchOn:")){
+                    line=  line.substring("isGoingToBeOn_OnSwitchOn:".length(),line.length()).replaceAll(" ","");
+                    isGoingToBeOn_OnSwitchOn=Boolean.parseBoolean(line);
+                }
+            }
+            System.out.println("isGoingToBeOn_OnSwitchOn"+isGoingToBeOn_OnSwitchOn);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        isGoingToBeOn_OnSwitchOn=false;
+        }
+    }
+    
     
      public  void readDeviceID(String fileName){
 
@@ -127,7 +154,7 @@ public class SH {
 else if (line.startsWith("email_password:")){
                     output=line.substring("email_password:".length(),line.length());
                    email_password=output;
-             System.out.println("email_password"+email_password);
+             System.out.println("email_password"+"****");
                 }
                 }
 if(!enable_send_mail_on_boot||email_from==null|| emails_to.isEmpty()|| email_password==null){
@@ -579,7 +606,7 @@ return ip;
         declareInputsAndOutputs("/home/pi/Desktop/SpeechRaspberrySmartHouse/gpio_input_output.txt");
         readPort("/home/pi/Desktop/SpeechRaspberrySmartHouse/port.txt");
         readExclusiveOutputs("/home/pi/Desktop/SpeechRaspberrySmartHouse/exclusiveOutputs.txt");
-
+isGoingToBeOn_OnSwitchOn("/home/pi/Desktop/SpeechRaspberrySmartHouse/isGoingToBeOn_OnSwitchOn.txt");
         
         if(hasExterlanGPIO) {
 
@@ -2104,16 +2131,37 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
 //            state = null;
 
 //            boolean isHigh = isHightfromSwitch(isHightPrevious !=in.isHigh());
-            boolean isHigh = isHight(pins[id]);
-            if (isHigh) {
+
+
+boolean isHigh=false;
+          
+if(!isGoingToBeOn_OnSwitchOn){
+             isHigh = isHight(pins[id]);
+             if (isHigh) {
                 state = OFF.get(0);
             } else {
                 state = ON.get(0);
             }
+            }else{
+                         isHigh =in.isHigh();
+                         if (!isHigh) {
+                state = OFF.get(0);
+            } else {
+                state = ON.get(0);
+            }
+            }
+                       System.out.println("isHigh"+isHigh);
+                             System.out.println("isHightPrevious"+isHightPrevious);
+       if((isHigh==isHightPrevious)&&isGoingToBeOn_OnSwitchOn){
+           
+           System.out.println("returning input, same input");
+           return;}
+            
             //else {
             //  System.out.println("problem state = " + state);
             //return;
             //}
+            
 
             ToggleLedNo(id, state, false);
             new Thread() {
@@ -2128,7 +2176,7 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
                     }
                 }
             }.start();
-            isHightPrevious =in.isHigh();
+
 
 
 //            isRunning = false;
@@ -2142,6 +2190,7 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
             //                     ex.printStackTrace();
             //                 }
             //             }
+                        isHightPrevious =in.isHigh();
         }
     }
 
@@ -2478,7 +2527,7 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
                         //                         }
                         //                         }
                         if (isActive) {
-                            System.out.println("switch " + outputPowerCommands[j].get(0) + " " + mode);
+                           // System.out.println("switch " + outputPowerCommands[j].get(0) + " " + mode);
                             sendToAll("switch " + outputPowerCommands[j].get(0) + " " + mode);
 
                         }
@@ -2589,7 +2638,7 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
             thread.start();
             resetSendingTo.add(thread);
         }
-        System.out.println("sendingTo.size() =" + sendingTo.size());
+       // System.out.println("sendingTo.size() =" + sendingTo.size());
 
     }
 

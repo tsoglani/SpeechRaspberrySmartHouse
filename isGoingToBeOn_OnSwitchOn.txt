@@ -1,0 +1,3 @@
+isGoingToBeOn_OnSwitchOn:false
+
+// default equals off and change state on or of if the switch turn (the switch state doesnt matter, the switch might be on and the device off, workds better in house implementation)
