@@ -3,4 +3,4 @@
 
 
 
-// to work remove "//" from commands (on top)
+// to work remove "//" from commands (above)
