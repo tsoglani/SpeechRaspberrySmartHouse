@@ -615,7 +615,7 @@ c2.add(scrollSpecific);
         usingList=fr.sh.outputPowerCommands;
         neededOutputs=fr.sh.getAllCommandOutput();
         String [] outputs=neededOutputs.split("@@@");
-        center.setLayout(new GridLayout(0,(int)(fr.width/450)));
+        center.setLayout(new GridLayout((int)Math.sqrt(usingList.length),(int)Math.sqrt(usingList.length)));
 
         for(int i=0;i<usingList.length;i++){
             ArrayList <String> list=usingList[i];

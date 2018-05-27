@@ -397,7 +397,7 @@ System.out.println("Fr is running");
         switcButtons=new JButton[usingList.length];
         String [] outputs=neededOutputs.split("@@@");
 
-        center.setLayout(new GridLayout((int)Math.sqrt(usingList.length)+1,(int)Math.sqrt(usingList.length)+1));
+        center.setLayout(new GridLayout((int)Math.sqrt(usingList.length),(int)Math.sqrt(usingList.length)));
 
         for(int i=0;i<usingList.length;i++){
             ArrayList <String> list=usingList[i];
