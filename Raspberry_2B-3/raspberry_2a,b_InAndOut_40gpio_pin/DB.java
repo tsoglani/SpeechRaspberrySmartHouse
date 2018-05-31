@@ -17,7 +17,8 @@ import java.io.Serializable;
 
 public class DB implements Serializable{
     public final static String DAYS_STRING = "ActiveDays:", TIME_STRING = "ActiveTime:",TIME_STAMP = "TimeStamp:",SENDING_TIME="Time:",USER_ID_SPLIT="!!!!!",
-    COMMAND_TEXT_STRING = "CommandText:",COMMAND_ID = "CommandID:",DEVICE_ID = "DeviceID:",    IS_WEEKLY = "IsWeekly:", IS_ACTIVE = "IsActive:", COMMAND_SPLIT_STRING = "##", SHEDULE_SPLIT_STRING = "@@!@@";
+    COMMAND_TEXT_STRING = "CommandText:",COMMAND_ID = "CommandID:",DEVICE_ID = "DeviceID:",    IS_WEEKLY = "IsWeekly:", IS_ACTIVE = "IsActive:", COMMAND_SPLIT_STRING = "##", SHEDULE_SPLIT_STRING = "@@!@@",
+    COMMAND_SPLIT_MULTY_TIMERS_STRING="@@TimerSeperator@@";
 
     private static ArrayList<Shedule> sheduleList = new ArrayList<Shedule>(){
 

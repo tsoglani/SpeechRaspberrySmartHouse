@@ -1354,8 +1354,10 @@ isGoingToBeOn_OnSwitchOn("/home/pi/Desktop/SpeechRaspberrySmartHouse/isGoingToBe
         }.start();
     }
 
+   // private ArrayList <String> verifiedIp=new ArrayList();
+    
     private void startReceivingData() throws IOException {
-        boolean isOnSwitchView = false;
+   boolean isOnSwitchView = false;
         try{
         serverSocket = new DatagramSocket(port);
     }catch(Exception e){}
@@ -1593,16 +1595,21 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
 
             } else if (sentence.startsWith("newTimer:")) {
                 // create new Timer
+               
+                
+                
                 String UsingCommand = sentence.substring("newTimer:".length(), sentence.length());
+                               System.out.println("new timer:"+UsingCommand); 
+                
                 String[] list = UsingCommand.split(DB.COMMAND_SPLIT_STRING);
                 String device_id = list[0].substring(DB.DEVICE_ID.length());
                 if (Integer.parseInt(device_id) != DeviceID) {
-                    return;
+                    continue;
                 }
                 String timeStamp = list[1].substring(DB.TIME_STAMP.length());
                 String command_text = list[2].substring(DB.COMMAND_TEXT_STRING.length());
                 if (!db.conainsCommandInDevice(command_text)) {
-                    return;
+                    continue;
                 }
                 String timeInSeconds = list[3].substring(DB.SENDING_TIME.length());
                 System.out.println("TIMER : device_id = " + device_id + " , timeStamp= " + timeStamp + " , command_text= "
@@ -1616,6 +1623,49 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
                     timer.start();
                     sendToAllExcept("Timers:DeviceID:" + DeviceID + DB.COMMAND_SPLIT_STRING + timer.toString(), receivePacket.getAddress(), receivePacket.getPort());
                 }
+            } else if (sentence.startsWith("newTimers:")) {
+                // create new Timers
+
+                String UsingCommand = sentence.substring("newTimers:".length(), sentence.length());
+               
+
+             String [] timersCMD =UsingCommand.split(DB.COMMAND_SPLIT_MULTY_TIMERS_STRING);
+                            String timeStamp=null;
+                            
+                            System.out.println(UsingCommand);
+                                            System.out.println("new timers:"+timersCMD.length);
+             for(String cmdTmr : timersCMD ){
+                System.out.println("new timers:"+cmdTmr);
+               String[] list = cmdTmr.split(DB.COMMAND_SPLIT_STRING);
+                String device_id = list[0].substring(DB.DEVICE_ID.length());
+
+                if (Integer.parseInt(device_id) != DeviceID) {
+                    continue;
+                }
+                timeStamp = list[1].substring(DB.TIME_STAMP.length());
+                String command_text = list[2].substring(DB.COMMAND_TEXT_STRING.length());
+               System.out.println(command_text);
+                if (!db.conainsCommandInDevice(command_text)) {
+                    continue;
+                }
+                String timeInSeconds = list[3].substring(DB.SENDING_TIME.length());
+                System.out.println("TIMER : device_id = " + device_id + " , timeStamp= " + timeStamp + " , command_text= "
+                        + command_text + " , timeInSeconds= " + timeInSeconds);
+                
+
+               if (!TimerCountdown.containsTimestamp(Long.parseLong(timeStamp))) {
+                   
+                    TimerCountdown timer = new TimerCountdown(this, command_text, timeInSeconds, timeStamp);
+                     sendToAllExcept("Timers:DeviceID:" + DeviceID + DB.COMMAND_SPLIT_STRING + timer.toString(), receivePacket.getAddress(), receivePacket.getPort());
+                    timer.start();
+                 }
+
+                 }
+              sendData("newTimerOK", receivePacket.getAddress(), receivePacket.getPort());
+        
+            if (!fr.isTimerModeSelected) {
+                        new TimerView(fr);
+            }
             } else if (sentence.startsWith("getTimers")) {
 
                 sendData("Timers:DeviceID:" + DeviceID + DB.COMMAND_SPLIT_STRING + TimerCountdown.getAllTimers(), receivePacket.getAddress(), receivePacket.getPort());
@@ -1627,14 +1677,14 @@ if(fr==null||SheduleView.selectedOption==null||fr.isSheduleModeSelected&&(!Shedu
                 String[] list = UsingCommand.split(DB.COMMAND_SPLIT_STRING);
                 String device_id = list[0].substring(DB.DEVICE_ID.length());
                 if (Integer.parseInt(device_id) != DeviceID) {
-                    return;
+                    continue;
                 }
                 String commandID = list[1].substring(DB.COMMAND_ID.length());
                 String timeStamp = list[2].substring(DB.TIME_STAMP.length());
                 String command_text = list[3].substring(DB.COMMAND_TEXT_STRING.length());
 
                 if (!db.conainsCommandInDevice(command_text)) {
-                    return;
+                    continue;
                 }
                 if (!fr.isTimerModeSelected) {
                     new TimerView(fr);
