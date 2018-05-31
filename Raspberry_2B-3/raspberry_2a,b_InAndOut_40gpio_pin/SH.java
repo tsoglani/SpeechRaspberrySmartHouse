@@ -1354,7 +1354,7 @@ isGoingToBeOn_OnSwitchOn("/home/pi/Desktop/SpeechRaspberrySmartHouse/isGoingToBe
         }.start();
     }
 
-   // private ArrayList <String> verifiedIp=new ArrayList();
+private ArrayList <String> verifiedIp=new ArrayList();
     
     private void startReceivingData() throws IOException {
    boolean isOnSwitchView = false;
@@ -1384,6 +1384,28 @@ isGoingToBeOn_OnSwitchOn("/home/pi/Desktop/SpeechRaspberrySmartHouse/isGoingToBe
             } else {
                 //  System.out.println("No Unique user id");
             }
+            
+            if (sentence.startsWith("globalReturning")) {
+                 
+                if (sentence.substring("globalReturning".length()).replace(" ", "").equalsIgnoreCase(deviceName.replace(" ", ""))) {
+                   
+            verifiedIp.add(receivePacket.getAddress().toString());
+        }
+            }else if (sentence.startsWith("returning")){
+
+            if(receivePacket.getAddress().isLinkLocalAddress()||receivePacket.getAddress().isLoopbackAddress()){}
+                            verifiedIp.add(receivePacket.getAddress().toString());
+           
+         
+            }
+            if(!verifiedIp.contains(receivePacket.getAddress().toString())){
+            System.out.println("Not Verified Ip");
+            continue;
+            }
+            
+            
+            
+            
 
             if (sentence.startsWith("speech@@@")) {
                 sentence = sentence.substring("speech@@@".length(), sentence.length());
