@@ -4,6 +4,11 @@
    sudo apt-get update
  sudo apt-get install oracle-java8-installer(install java 8)</br>
  sudo apt-get install oracle-java8-set-default(set java 8 default) </br>
+ OR
+</br>
+pi@raspberrypi:~ $ sudo apt-get install openjdk-8-jre-headless -y
+
+ 
  
 2)if you not used it before  "sudo apt-get update" </br>
 
