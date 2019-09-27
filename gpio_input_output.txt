@@ -4,4 +4,5 @@ External false
 
 //  external is for pca9685 device which gives 16 Output (NOT Input)
 // MUST have more outputs from inputs
-///,7,8,9, not used
+///,7,8,9, not used must have at least one input.
+
